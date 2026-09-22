@@ -2,6 +2,22 @@
 import json
 import shutil
 
+POST_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{}</title>
+	<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+    {}
+</body>
+</html>
+
+"""
+
 POST_ITEM_TEMPLATE = """
 <div class="post-item">
     <a href="{}"><h2>({}) {}</h2></a>
@@ -31,5 +47,5 @@ for x in metadata:
     with open(f"build/posts/{x["post"]}/index.html") as fp:
         post = fp.read()
     with open(f"build/posts/{x["post"]}/index.html", "w") as fp:
-        post = f"<title>{x["title"]}</title>\n" + post
-        fp.write(post)
+        new_post = POST_TEMPLATE.format(x["title"], post)
+        fp.write(new_post)
