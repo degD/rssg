@@ -13,16 +13,18 @@ complex for my usecase.
 <p>
 If you want to use this tool, I warn you that it is not designed
 for general use. You will have to pull the blog source from
-`codeberg`, replace posts and sources with your owns, and run
-`build.py`.
+<a href="https://codeberg.org/redged/blog">codeberg</a>, replace
+posts and sources with your owns, and run `build.py`.
 </p>
 
 <p>
 To create a new post, go to `posts/_metadata.json` and create
 an entry like the existing examples. Each entry must have three
 fields: title, date (in YY/MM/DD format), post. Post field is
-the directory of the corresponding post. For example, this is the
-entry for this post:
+the directory of the corresponding post. Go to `posts/blog/index.html`.
+This is how you write your post. For example, this is the entry for
+this post:
+</p>
 <pre>
 {
     "title": "Blog",
@@ -30,4 +32,19 @@ entry for this post:
     "post": "blog"
 }
 </pre>
+
+<p>
+Lets get a little more technical. The Python builder script generates
+the final files by using hardcoded templates and the templates inside
+`src` directory. `src/index.html` is the home page.
+</p>
+
+<pre>
+&lt;!-- {{POSTS-LIST}} --&gt;
+</pre>
+
+<p>
+This section inside `index.html` gets replaced by a list of posts.
+`src/style.css` gets copied to build. If you add more files under `src`
+and want to copy them to `build`, update `build.py` accordingly.
 </p>
