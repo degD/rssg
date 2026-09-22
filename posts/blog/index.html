@@ -1,0 +1,33 @@
+<h1>Blog</h1>
+
+<p>
+I created an ultimately minimalist static site generation tool.
+I will call it `redged's static site generator`. It is
+basically a Python script to copy source posts with some
+transformation to the `build` directory. I created this tool
+because I did not enjoy complexity of existing static site
+generation tools. I tried `Hugo` for a while, which was too
+complex for my usecase.
+</p>
+
+<p>
+If you want to use this tool, I warn you that it is not designed
+for general use. You will have to pull the blog source from
+`codeberg`, replace posts and sources with your owns, and run
+`build.py`.
+</p>
+
+<p>
+To create a new post, go to `posts/_metadata.json` and create
+an entry like the existing examples. Each entry must have three
+fields: title, date (in YY/MM/DD format), post. Post field is
+the directory of the corresponding post. For example, this is the
+entry for this post:
+<pre>
+{
+    "title": "Blog",
+    "date": "26/09/22",
+    "post": "blog"
+}
+</pre>
+</p>

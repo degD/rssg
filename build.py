@@ -1,7 +1,6 @@
 
 import json
 import shutil
-from pathlib import Path
 
 POST_ITEM_TEMPLATE = """
 <div class="post-item">
