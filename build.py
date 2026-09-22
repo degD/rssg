@@ -1,6 +1,11 @@
 
 import json
 import shutil
+from pathlib import Path
+
+BUILD = Path("build")
+shutil.rmtree(BUILD, ignore_errors=True)
+BUILD.mkdir()
 
 POST_TEMPLATE = """
 <!DOCTYPE html>
