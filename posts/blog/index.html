@@ -1,56 +1,49 @@
 <h1>Blog</h1>
 
 <p>
-I created an ultimately minimalist static site generation tool.
-I will call it `redged's static site generator`. It is
-basically a Python script to copy source posts with some
-transformation to the `build` directory. I created this tool
-because I did not enjoy complexity of existing static site
-generation tools. I tried `Hugo` for a while, which was too
-complex for my usecase.
+This post documents <a href="https://codeberg.org/redged/blog">redged's static site generator</a>, a deliberately minimal static site generator.
+It is a single Python script that transforms the HTML under <code>posts</code> into a static site in <code>build</code>.
 </p>
 
 <p>
-If you want to use this tool, I warn you that it is not designed
-for general use. You will have to pull the blog source from
-<a href="https://codeberg.org/redged/blog">codeberg</a>, replace
-posts and sources with your owns, and run `build.py`.
-</p>
+I built it after trying <code>Hugo</code>, which felt overly complex for my use case.</p>
+
+<h2>Using the tool</h2>
+<p>
+It is not designed for general use. To use it, clone the source,
+replace <code>posts</code> and <code>src</code> with your own content, then run <code>python3 build.py</code>.</p>
+
+<h2>Adding a post</h2>
+<p>
+A post is an <code>index.html</code> inside a directory under <code>posts</code>, containing the post body as plain HTML.</p>
 
 <p>
-To create a new post, go to `posts/_metadata.json` and create
-an entry like the existing examples. Each entry must have three
-fields: title, date (in YY/MM/DD format), post. Post field is
-the directory of the corresponding post. Go to `posts/blog/index.html`.
-This is how you write your post. For example, this is the entry for
-this post:
-</p>
-<pre>
-{
+Each post needs a corresponding entry in <code>posts/_metadata.json</code>. For this post:</p>
+<pre>{
     "title": "Blog",
     "date": "26/09/22",
     "post": "blog"
-}
-</pre>
+}</pre>
 
 <p>
-Lets get a little more technical. The Python builder script generates
-the final files by using hardcoded templates and the templates inside
-`src` directory. `src/index.html` is the home page.
-</p>
+Every entry must have three fields:
+<ul>
+    <li><code>title</code>: the post title.</li>
+    <li><code>date</code>: the date in <code>YY/MM/DD</code> format. Posts are sorted by it, newest first.</li>
+    <li><code>post</code>: the name of the post's directory under <code>posts</code>.</li>
+</ul></p>
 
-<pre>
-&lt;!-- {{POSTS-LIST}} --&gt;
-</pre>
+<h2>How the build works</h2>
+<p>
+<code>build.py</code> generates the output from two kinds of templates:</p>
+<ul>
+    <li>A hardcoded template per post: each post is wrapped in a minimal HTML document and written to <code>build/posts/&lt;slug&gt;/index.html</code>.</li>
+    <li><code>src/index.html</code>: the home page. Its <code>&lt;!-- {{POSTS-LIST}} --&gt;</code> marker is replaced with a list of all posts.</li>
+    <li><code>src/style.css</code>: copied to <code>build</code> as-is. Any additional files under <code>src</code> need their own copy step in <code>build.py</code>.</li>
+</ul>
 
 <p>
-This section inside `index.html` gets replaced by a list of posts.
-`src/style.css` gets copied to build. If you add more files under `src`
-and want to copy them to `build`, update `build.py` accordingly.
-</p>
+<code>deploy.sh</code> copies the build output onto the <code>pages</code> branch of the codeberg repository and pushes it; codeberg serves that branch as the live site. <a href="https://redged.codeberg.page/blog">See the site online</a>.</p>
 
 <p>
-I created `deploy.sh` to push changes to the `pages` branch, which codeberg
-uses to deploy on web. <a href="https://redged.codeberg.page/blog">See the site online</a>.
-If you want to comment, create an issue on the blog repo.
-</p>
+To comment, open an issue in the <a href="https://codeberg.org/redged/blog/issues">blog repository</a>.</p>
