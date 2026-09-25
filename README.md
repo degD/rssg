@@ -9,7 +9,7 @@ HTML under `posts` into a static site in `build`. No dependencies needed.
 Clone the source, put your posts under `posts` directory. Put your source and template files
 under `src` and `src/templates`. Update `posts/_metadata.json` accordingly. Run `python3 build.py`.
 To configure the build process, simply modify to code inside `build.py`. Modify templates and 
-sources as it fits.
+sources as it fits. Each template file has `{}` fields that `build.py` fills in order. 
 
 A post is an `index.html` file inside a directory under `posts`. It contains body in plain HTML.
 Each post needs a corresponding entry in `posts/_metadata.json` in the following format:
