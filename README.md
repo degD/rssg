@@ -31,6 +31,7 @@ Each post needs a corresponding entry in `posts/_metadata.json` in the following
 It depends on the provider. For Codeberg, create an empty `pages` branch and run 
 `bash deploy.sh`. It copies the build output onto the `pages` branch of the 
 Codeberg repository and pushes it. Codeberg serves that branch as the live site.
+Update `REPO` in `deploy.sh` accordingly. 
 
 ## License
 

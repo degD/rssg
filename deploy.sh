@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 0. source path. update accordingly
-REPO="ssh://git@codeberg.org/redged/blog.git"
+REPO="ssh://git@codeberg.org/<user>/<repo>.git"
 
 # 1. build source
 set -eu
