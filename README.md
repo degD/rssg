@@ -2,7 +2,8 @@
 # Redged's Static Site Generator (RSSG)
 
 Deliberately minimal static site generator. Just a single Python script that transforms 
-HTML under `posts` into a static site in `build`. No dependencies needed.
+HTML under `posts` into a static site in `build`. No dependencies needed. Check 
+[https://redged.codeberg.page/rssg/](https://redged.codeberg.page/rssg/) to see in action. 
 
 ## How to Use?
 
