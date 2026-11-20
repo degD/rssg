@@ -72,13 +72,13 @@ for x in metadata:
         continue
     elif q.exists() and not pandoc_installed:
         print(f'post "{x["post"]}" is markdown but "pandoc" is not installed. skipping...')
-        continue  
+        continue
 
-    # writing into the template 
+    # writing into the template
     with open(f"build/posts/{x["post"]}/index.html") as fp:
         post = fp.read()
     with open(f"build/posts/{x["post"]}/index.html", "w") as fp:
-        new_post = POST_TEMPLATE.format(x["title"], x["title"], post)
+        new_post = POST_TEMPLATE.format(x["title"], post)
         fp.write(new_post)
 
     # formatting
